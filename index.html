@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>東海衣服搭配</title>
+    <title>東海衣櫃</title>
     <style>
       * {
         margin: 0;
@@ -49,7 +49,7 @@
 
       .character-base {
         position: relative;
-        width: 200px;
+        width: 280px;
         height: 400px;
       }
 
@@ -75,6 +75,9 @@
 
       .clothing-layer {
         z-index: 5;
+      }
+      .product-layer {
+        z-index: 6;
       }
 
       .pants-layer {
@@ -181,7 +184,7 @@
         }
 
         .character-base {
-          width: 150px;
+          width: 250px;
           height: 300px;
         }
       }
@@ -203,7 +206,7 @@
   </head>
   <body>
     <div class="game-container">
-      <h1 class="title">🎮 幫東海搭衣服</h1>
+      <h1 class="title">海海穿什麼</h1>
 
       <div class="character-container">
         <div class="character-base">
@@ -256,6 +259,18 @@
               👕<br />衣服
             </div>
           </div>
+          <!-- 配件層 -->
+          <div class="character-layer product-layer">
+            <img
+              id="product-img"
+              src=""
+              alt="配件"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="placeholder-img" style="display: none">
+              👕<br />配件
+            </div>
+          </div>
         </div>
       </div>
 
@@ -298,6 +313,18 @@
             </button>
           </div>
         </div>
+        <div class="control-row">
+          <div class="control-label">配件</div>
+          <div class="control-buttons">
+            <button class="control-btn" onclick="changeItem('product', -1)">
+              ←
+            </button>
+            <div class="item-name" id="product-name">樣式 1</div>
+            <button class="control-btn" onclick="changeItem('product', 1)">
+              →
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -328,12 +355,20 @@
           "./img/shoes/shoes4.png",
           "./img/shoes/shoes5.png",
         ],
+        product: [
+          "./img/product/product1.png",
+          "./img/product/product2.png",
+          "./img/product/product3.png",
+          "./img/product/product4.png",
+          "./img/product/product5.png",
+        ],
       };
 
       let currentIndex = {
         clothing: 0,
         pants: 0,
         shoes: 0,
+        product: 0,
       };
 
       function changeItem(type, direction) {
@@ -384,6 +419,7 @@
         changeItem("clothing", 0);
         changeItem("pants", 0);
         changeItem("shoes", 0);
+        changeItem("product", 0);
       }
 
       // 為所有圖片添加錯誤處理
@@ -392,11 +428,13 @@
         const clothingImg = document.getElementById("clothing-img");
         const pantsImg = document.getElementById("pants-img");
         const shoesImg = document.getElementById("shoes-img");
+        const productImg = document.getElementById("product-img");
 
         baseImg.onerror = () => handleImageError(baseImg, "基礎人物");
         clothingImg.onerror = () => handleImageError(clothingImg, "衣服");
         pantsImg.onerror = () => handleImageError(pantsImg, "褲子");
         shoesImg.onerror = () => handleImageError(shoesImg, "鞋子");
+        productImg.onerror = () => handleImageError(productImg, "配件");
 
         init();
       });
