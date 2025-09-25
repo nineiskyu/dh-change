@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>東海衣櫃</title>
+
     <style>
       * {
         margin: 0;
@@ -42,31 +43,41 @@
       .character-container {
         display: flex;
         justify-content: center;
-        margin-bottom: 40px;
         position: relative;
-        height: 400px;
+        height: 540px;
+        width: 540px;
       }
 
       .character-base {
         position: relative;
-        width: 280px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
       }
 
       .character-layer {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+
         transition: opacity 0.3s ease;
+      }
+      .bg-layer {
+        position: absolute;
+        top: 0;
+
+        transition: opacity 0.3s ease;
+      }
+      .bg-layer img {
+        height: 540px;
+        width: 540px;
+
+        object-fit: cover;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
       }
 
       .character-layer img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+        filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
       }
 
       .base-character {
@@ -78,6 +89,9 @@
       }
       .product-layer {
         z-index: 6;
+      }
+      .background-layer {
+        z-index: 0;
       }
 
       .pants-layer {
@@ -91,7 +105,7 @@
       .controls {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
       }
 
       .control-row {
@@ -180,12 +194,20 @@
         }
 
         .character-container {
-          height: 300px;
+          width: 100%;
+          height: 100%;
+          max-width: 360px;
         }
 
         .character-base {
-          width: 250px;
-          height: 300px;
+          height: 340px;
+          width: 340px;
+        }
+        .bg-layer img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
         }
       }
     </style>
@@ -205,10 +227,37 @@
     </script>
   </head>
   <body>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3726552258466882"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 衣櫃 -->
+    <ins
+      class="adsbygoogle"
+      style="display: block"
+      data-ad-client="ca-pub-3726552258466882"
+      data-ad-slot="4338320661"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
     <div class="game-container">
-      <h1 class="title">海海穿什麼</h1>
+      <!-- <h1 class="title">海海穿什麼</h1>-->
 
       <div class="character-container">
+        <!-- 背景層 -->
+        <div class="bg-layer background-layer">
+          <img
+            id="background-img"
+            src=""
+            alt="背景"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="placeholder-img" style="display: none">背景</div>
+        </div>
         <div class="character-base">
           <!-- 基礎人物 -->
           <div class="character-layer base-character">
@@ -325,8 +374,37 @@
             </button>
           </div>
         </div>
+        <div class="control-row">
+          <div class="control-label">背景</div>
+          <div class="control-buttons">
+            <button class="control-btn" onclick="changeItem('background', -1)">
+              ←
+            </button>
+            <div class="item-name" id="background-name">樣式 1</div>
+            <button class="control-btn" onclick="changeItem('background', 1)">
+              →
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3726552258466882"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 衣櫃 -->
+    <ins
+      class="adsbygoogle"
+      style="display: block"
+      data-ad-client="ca-pub-3726552258466882"
+      data-ad-slot="4338320661"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <script>
       // 圖片路徑配置 - 請根據你的圖片路徑修改
@@ -342,10 +420,10 @@
           "./img/clothing/shirt5.png",
         ],
         pants: [
-          "./img/pants/jeans1.png",
-          "./img/pants/jeans2.png",
           "./img/pants/shorts1.png",
           "./img/pants/shorts2.png",
+          "./img/pants/jeans1.png",
+          "./img/pants/jeans2.png",
           "./img/pants/jeans3.png",
         ],
         shoes: [
@@ -356,11 +434,18 @@
           "./img/shoes/shoes5.png",
         ],
         product: [
-          "./img/product/product2.PNG",
+          "./img/product/product2.png",
           "./img/product/product1.png",
-          "./img/product/product3.PNG",
-          "./img/product/product4.PNG",
-          "./img/product/product5.PNG",
+          "./img/product/product3.png",
+          "./img/product/product4.png",
+          "./img/product/product5.png",
+        ],
+        background: [
+          "./img/bg/bg1.png",
+          "./img/bg/bg2.png",
+          "./img/bg/bg3.png",
+          "./img/bg/bg4.png",
+          "./img/bg/bg5.png",
         ],
       };
 
@@ -369,6 +454,7 @@
         pants: 0,
         shoes: 0,
         product: 0,
+        background: 0,
       };
 
       function changeItem(type, direction) {
@@ -391,8 +477,8 @@
 
         // 添加切換動畫
         const layer = imgElement.parentElement;
-        layer.style.opacity = "0.7";
-        layer.style.transform = "scale(0.95)";
+        layer.style.opacity = "1";
+        layer.style.transform = "scale(0.99)";
 
         setTimeout(() => {
           layer.style.opacity = "1";
@@ -420,6 +506,7 @@
         changeItem("pants", 0);
         changeItem("shoes", 0);
         changeItem("product", 0);
+        changeItem("background", 0);
       }
 
       // 為所有圖片添加錯誤處理
@@ -429,12 +516,14 @@
         const pantsImg = document.getElementById("pants-img");
         const shoesImg = document.getElementById("shoes-img");
         const productImg = document.getElementById("product-img");
+        const backgroundImg = document.getElementById("background-img");
 
         baseImg.onerror = () => handleImageError(baseImg, "基礎人物");
         clothingImg.onerror = () => handleImageError(clothingImg, "衣服");
         pantsImg.onerror = () => handleImageError(pantsImg, "褲子");
         shoesImg.onerror = () => handleImageError(shoesImg, "鞋子");
         productImg.onerror = () => handleImageError(productImg, "配件");
+        backgroundImg.onerror = () => handleImageError(backgroundImg, "背景");
 
         init();
       });
